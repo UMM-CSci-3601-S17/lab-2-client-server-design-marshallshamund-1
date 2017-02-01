@@ -42,5 +42,17 @@ public class TodoController {
         return limitedList;
     }
 
+    public Todo[] listStatusTodos(Map<String, Boolean> statusQueryParameter){
+        Todo[] statusTodos = todos;
+        if(statusQueryParameter.containsKey("status")){
+            statusTodos = filterStatusTodos(statusTodos, statusQueryParameter.get("status"));
+        }
+        return statusTodos;
+    }
+
+    public Todo[] filterStatusTodos(Todo[] statusTodos, boolean todoStatus){
+        return Arrays.stream(statusTodos).filter(x -> x.status = todoStatus).toArray(Todo[]::new);
+    }
+
 
 }

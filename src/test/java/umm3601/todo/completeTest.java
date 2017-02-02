@@ -10,13 +10,22 @@ import java.util.Map;
 
 public class completeTest {
     @Test
-    public void statusTrue() throws IOException {
+    public void statusComplete() throws IOException {
         TodoController todoController = new TodoController();
-        Map<.status, Boolean> queryParameter = new HashMap<>();
+        Map<String, Boolean> queryParameter = new HashMap<>();
         queryParameter.put("status", true);
-        Todo[] completedTodos = todoController.listStatusTodos(queryParameter);
-        Todo completed = completedTodos[0];
+        Todo[] completeTodos = todoController.listStatusTodos(queryParameter);
+        Todo completed = completeTodos[0];
         assertEquals("It's True", true, completed.status);
-        //assertEquals("Not enough Todos" ,50, completedTodos.length);
+        assertEquals("Incorrect Nummber Of Todos", 143, completeTodos.length);
+    }
+
+    @Test
+    public void statusIncomplete() throws IOException{
+        TodoController todoController = new TodoController();
+        Map<String, Boolean> queryParameter = new HashMap<>();
+        queryParameter.put("status", false);
+        Todo[] incompleteTodos = todoController.listStatusTodos(queryParameter);
+        assertEquals("Incorrect Nummber Of Todos", 157, incompleteTodos.length);
     }
 }

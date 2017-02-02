@@ -44,14 +44,16 @@ public class TodoController {
 
     public Todo[] listStatusTodos(Map<String, Boolean> statusQueryParameter){
         Todo[] statusTodos = todos;
+
         if(statusQueryParameter.containsKey("status")){
-            statusTodos = filterStatusTodos(statusTodos, statusQueryParameter.get("status"));
+            boolean status = statusQueryParameter.get("status");
+            statusTodos = filterStatusTodos(statusTodos, status);
         }
         return statusTodos;
     }
 
     public Todo[] filterStatusTodos(Todo[] statusTodos, boolean todoStatus){
-        return Arrays.stream(statusTodos).filter(x -> x.status = todoStatus).toArray(Todo[]::new);
+        return Arrays.stream(statusTodos).filter(x -> x.status == todoStatus).toArray(Todo[]::new);
     }
 
 

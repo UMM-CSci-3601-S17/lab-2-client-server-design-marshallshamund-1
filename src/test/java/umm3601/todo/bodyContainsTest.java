@@ -20,7 +20,7 @@ public class bodyContainsTest {
         queryParameter.put("contains", new String[] {"officia"});
         Todo[] officiaTodos = todoController.listTodos(queryParameter);
         assertEquals("Incorrect number of todos that contain officia", 86, officiaTodos.length);
-        queryParameter.put("contains", new String[] {"consequat"});
+        queryParameter.put("contains", new String[] {"Consequat"});
         Todo[] consequatTodos = todoController.listTodos(queryParameter);
         assertEquals("Incorrect number of todos that contain consequat", 78, consequatTodos.length);
     }

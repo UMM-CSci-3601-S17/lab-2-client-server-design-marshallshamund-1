@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
 
-/**
- * Created by gordo580 on 2/1/17.
- */
 public class TodoController {
 
     private Todo[] todos;
@@ -44,6 +41,12 @@ public class TodoController {
             String specifiedWord = queryParameter.get("contains")[0];
             filteredTodos = containedInBody(filteredTodos, specifiedWord);
         }
+
+        //Todos specified by owner
+        if(queryParameter.containsKey("owner")){
+            String whoseTodo = queryParameter.get("owner")[0];
+            filteredTodos = findTheirTodos(filteredTodos, whoseTodo);
+        }
         return filteredTodos;
     }
 
@@ -70,7 +73,12 @@ public class TodoController {
 
     //returns todos with specified word
     public Todo[] containedInBody(Todo[] todosWithWord, String specifiedWord){
-        return Arrays.stream(todosWithWord).filter(x -> x.body.toLowerCase().contains(specifiedWord)).toArray(Todo[]::new);
+        return Arrays.stream(todosWithWord).filter(x -> x.body.toLowerCase().contains(specifiedWord.toLowerCase())).toArray(Todo[]::new);
+    }
+
+    //returns todos of specified owner
+    public Todo[] findTheirTodos(Todo[] ownerTodos, String whoseTodo){
+        return Arrays.stream(ownerTodos).filter(x -> x.owner.equalsIgnoreCase(whoseTodo)).toArray(Todo[]::new);
     }
 
 

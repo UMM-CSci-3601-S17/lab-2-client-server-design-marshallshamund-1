@@ -8,9 +8,6 @@ import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by gordo580 on 2/3/17.
- */
 public class bodyContainsTest {
 
     @Test

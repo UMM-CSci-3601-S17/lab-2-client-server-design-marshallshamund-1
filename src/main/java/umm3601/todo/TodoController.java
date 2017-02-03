@@ -47,6 +47,12 @@ public class TodoController {
             String whoseTodo = queryParameter.get("owner")[0];
             filteredTodos = findTheirTodos(filteredTodos, whoseTodo);
         }
+
+        //Todos specified by category
+        if(queryParameter.containsKey("category")){
+            String whatCategory = queryParameter.get("category")[0];
+            filteredTodos = filterByCategory(filteredTodos, whatCategory);
+        }
         return filteredTodos;
     }
 
@@ -77,9 +83,14 @@ public class TodoController {
     }
 
     //returns todos of specified owner
+    //Made it so it will automacially remove whitespaces when placed in URL
     public Todo[] findTheirTodos(Todo[] ownerTodos, String whoseTodo){
-        return Arrays.stream(ownerTodos).filter(x -> x.owner.equalsIgnoreCase(whoseTodo)).toArray(Todo[]::new);
+        return Arrays.stream(ownerTodos).filter(x -> x.owner.replace(" ","").equalsIgnoreCase(whoseTodo.replace(" ",""))).toArray(Todo[]::new);
     }
 
+    //returns todos by category
+    public Todo[] filterByCategory(Todo[] categoryTodos, String whatCategory){
+        return Arrays.stream(categoryTodos).filter(x -> x.category.equalsIgnoreCase(whatCategory)).toArray(Todo[]::new);
+    }
 
 }

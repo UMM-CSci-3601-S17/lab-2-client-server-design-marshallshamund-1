@@ -30,7 +30,6 @@ public class TodoController {
         }
 
         //status todos
-
         if(queryParameter.containsKey("status")) {
             Boolean progress = false;
             String stateOfTodo = queryParameter.get("status")[0];
@@ -38,6 +37,12 @@ public class TodoController {
                 progress = true;
             }
             filteredTodos = filterStatusTodos(filteredTodos, progress);
+        }
+
+        //Todos with specified word in body
+        if(queryParameter.containsKey("contains")){
+            String specifiedWord = queryParameter.get("contains")[0];
+            filteredTodos = containedInBody(filteredTodos, specifiedWord);
         }
         return filteredTodos;
     }
@@ -61,6 +66,11 @@ public class TodoController {
     //returns completed or incomleted todos
     public Todo[] filterStatusTodos(Todo[] statusTodos, boolean todoStatus){
         return Arrays.stream(statusTodos).filter(x -> x.status == todoStatus).toArray(Todo[]::new);
+    }
+
+    //returns todos with specified word
+    public Todo[] containedInBody(Todo[] todosWithWord, String specifiedWord){
+        return Arrays.stream(todosWithWord).filter(x -> x.body.toLowerCase().contains(specifiedWord)).toArray(Todo[]::new);
     }
 
 

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class completeTest {
+public class statusTest {
     @Test
     public void statusComplete() throws IOException {
         TodoController todoController = new TodoController();

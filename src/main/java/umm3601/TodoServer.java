@@ -8,9 +8,6 @@ import java.io.IOException;
 import static spark.Spark.*;
 import static umm3601.Server.wrapInJson;
 
-/**
- * Created by gordo580 on 2/3/17.
- */
 public class TodoServer {
     public static void main(String[] args) throws IOException{
         staticFiles.location("/public");

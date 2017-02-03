@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,17 +29,16 @@ public class ReturnTodos {
     }
 
     @Test
-    public void returnSevenTodos() throws IOException{
+    public void returnLimitedTodos() throws IOException{
         TodoController todoController = new TodoController();
-        Todo[] sevenTodos = todoController.setNumberOfTodos(new HashMap<>(), 7);
+        Map<String, String[]> queryParameter = new HashMap<>();
+        queryParameter.put("limit", new String[] {"7"});
+        Todo[] sevenTodos = todoController.listTodos(queryParameter);
         assertEquals("Incorrect number of todos", 7, sevenTodos.length);
-    }
-
-    @Test
-    public void returnOneHundredTodos() throws IOException{
-        TodoController todoController = new TodoController();
-        Todo[] oneHundredTodos = todoController.setNumberOfTodos(new HashMap<>(), 100);
+        queryParameter.put("limit", new String[] {"100"});
+        Todo[] oneHundredTodos = todoController.listTodos(queryParameter);
         assertEquals("Incorrect Number Of Todos", 100, oneHundredTodos.length);
+
     }
 }
 

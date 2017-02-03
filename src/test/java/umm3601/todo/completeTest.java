@@ -12,20 +12,22 @@ public class completeTest {
     @Test
     public void statusComplete() throws IOException {
         TodoController todoController = new TodoController();
-        Map<String, Boolean> queryParameter = new HashMap<>();
-        queryParameter.put("status", true);
-        Todo[] completeTodos = todoController.listStatusTodos(queryParameter);
+        Map<String, String[]> queryParameter = new HashMap<>();
+        queryParameter.put("status", new String[] {"complete"});
+        Todo[] completeTodos = todoController.listTodos(queryParameter);
         Todo completed = completeTodos[0];
-        assertEquals("It's True", true, completed.status);
+        assertEquals("It's False", true, completed.status);
         assertEquals("Incorrect Nummber Of Todos", 143, completeTodos.length);
     }
 
     @Test
     public void statusIncomplete() throws IOException{
         TodoController todoController = new TodoController();
-        Map<String, Boolean> queryParameter = new HashMap<>();
-        queryParameter.put("status", false);
-        Todo[] incompleteTodos = todoController.listStatusTodos(queryParameter);
+        Map<String, String[]> queryParameter = new HashMap<>();
+        queryParameter.put("status", new String[] {"incomplete"});
+        Todo[] incompleteTodos = todoController.listTodos(queryParameter);
+        Todo incompleted = incompleteTodos[0];
+        assertEquals("It's True", false, incompleted.status);
         assertEquals("Incorrect Nummber Of Todos", 157, incompleteTodos.length);
     }
 }

@@ -20,9 +20,25 @@ public class TodoController {
         todos = gson.fromJson(reader, Todo[].class);
     }
 
-    public Todo[] listTodos(Map<String, String[]> queryParameter){
+    public Todo[] listTodos(Map<String, String[]> queryParameter) {
         Todo[] filteredTodos = todos;
 
+        //limited list of todos
+        if (queryParameter.containsKey("limit")) {
+            int listLimit = Integer.parseInt(queryParameter.get("limit")[0]);
+            filteredTodos = limitedList(filteredTodos, listLimit);
+        }
+
+        //status todos
+
+        if(queryParameter.containsKey("status")) {
+            Boolean progress = false;
+            String stateOfTodo = queryParameter.get("status")[0];
+            if(stateOfTodo.equals("complete")){
+                progress = true;
+            }
+            filteredTodos = filterStatusTodos(filteredTodos, progress);
+        }
         return filteredTodos;
     }
 
@@ -32,26 +48,17 @@ public class TodoController {
     }
 
     //Return specified number of todos
-    public Todo[] setNumberOfTodos(Map<String, String[]> queryParameter, int listLimit){
-        Todo[] limitedList = new Todo[listLimit];
+    public Todo[] limitedList(Todo[] filteredTodos, int listLimit){
+        filteredTodos = new Todo[listLimit];
 
-        for(int i = 0; i < listLimit; i++){
-            limitedList[i] = todos[i];
-        }
+        for(int i = 0; i < listLimit; i++) {
+            filteredTodos[i] = todos[i];
+            }
 
-        return limitedList;
+        return filteredTodos;
     }
 
-    public Todo[] listStatusTodos(Map<String, Boolean> statusQueryParameter){
-        Todo[] statusTodos = todos;
-
-        if(statusQueryParameter.containsKey("status")){
-            boolean status = statusQueryParameter.get("status");
-            statusTodos = filterStatusTodos(statusTodos, status);
-        }
-        return statusTodos;
-    }
-
+    //returns completed or incomleted todos
     public Todo[] filterStatusTodos(Todo[] statusTodos, boolean todoStatus){
         return Arrays.stream(statusTodos).filter(x -> x.status == todoStatus).toArray(Todo[]::new);
     }

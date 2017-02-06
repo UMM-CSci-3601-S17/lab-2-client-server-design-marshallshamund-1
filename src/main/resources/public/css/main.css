@@ -11,3 +11,12 @@ img {
     margin-right: auto;
     padding: 10px;
 }
+
+select.myDropdown{
+    height: 22px;
+    float: right;
+}
+
+.rightCorner{
+    float: right;
+}

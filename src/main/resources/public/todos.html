@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Todo Page!</title>
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script type="text/javascript" src="javascript/todo.js"> </script>
+</head>
+<body>
+
+    <button type="button" id="getAllTodos">Get All Todos</button>
+
+    <button class="rightCorner" type="button" onclick="setURL()">Filter List</button>
+    <input class="rightCorner" type = "text" id="redirect">
+
+    <select class="myDropdown" id="options">
+        <option value="/">id</option>
+        <option value="?owner=">owner</option>
+        <option value="?limit=">limit</option>
+        <option value="?status=">status</option>
+        <option value="?contains=">contains</option>
+        <option value="?category=">category</option>
+    </select>
+
+    <hr/>
+
+    <div id="jsonDump" style="margin-top:20px"> Json will go here</div>
+
+
+</body>
+</html>

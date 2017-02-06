@@ -16,7 +16,10 @@ public class TodoServer {
         Gson gson = new Gson();
         TodoController todoController = new TodoController();
 
-        //Redirect for list of todos
+        //Redirect for the Todos form
+        redirect.get("/todos", "/todos.html");
+
+        //list of todos
         get("api/todos", (req, res) -> {
             res.type("application/json");
             return wrapInJson("todos", gson.toJsonTree(todoController.listTodos(req.queryMap().toMap())));

@@ -5,6 +5,7 @@ window.onload = function(){
     element.addEventListener("click", getAllTodos, true);
 }
 
+//Get all todos
 var getAllTodos = function(){
     var OurClient = new HttpClient();
     OurClient.get("/api/todos", function(returned_json){
@@ -12,10 +13,24 @@ var getAllTodos = function(){
     });
 }
 
+function enable(){
+    document.getElementById("selectFilter").disable = false;
+}
+
+function setURL(){
+    var selection = document.getElementById('options').value;
+    var urlAddOn = document.getElementById("redirect").value;
+    var newPage = "http://localhost:4567/api/todos" + selection + urlAddOn;
+    if(selection == 'id'){
+        newPage = "http://localhost:4567/api/todos" + urlAddOn;
+    }
+
+    document.location = newPage;
+}
+
+
 /**
- * Wrapper to make generating http requests easier. Should maybe be moved
- * somewhere else in the future!.
- *
+
  * Based on: http://stackoverflow.com/a/22076667
  * Now with more comments!
  */

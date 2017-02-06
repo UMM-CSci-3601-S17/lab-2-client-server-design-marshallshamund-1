@@ -53,6 +53,7 @@ public class TodoController {
             String whatCategory = queryParameter.get("category")[0];
             filteredTodos = filterByCategory(filteredTodos, whatCategory);
         }
+
         return filteredTodos;
     }
 
@@ -92,5 +93,6 @@ public class TodoController {
     public Todo[] filterByCategory(Todo[] categoryTodos, String whatCategory){
         return Arrays.stream(categoryTodos).filter(x -> x.category.equalsIgnoreCase(whatCategory)).toArray(Todo[]::new);
     }
+
 
 }

@@ -13,14 +13,11 @@ var getAllTodos = function(){
     });
 }
 
-function enable(){
-    document.getElementById("selectFilter").disable = false;
-}
-
 function setURL(){
     var selection = document.getElementById('options').value;
     var urlAddOn = document.getElementById("redirect").value;
     var newPage = "http://localhost:4567/api/todos" + selection + urlAddOn;
+
     if(selection == 'id'){
         newPage = "http://localhost:4567/api/todos" + urlAddOn;
     }

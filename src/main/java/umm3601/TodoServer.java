@@ -11,13 +11,19 @@ import static spark.Spark.*;
 import static umm3601.Server.wrapInJson;
 
 public class TodoServer {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException {
         staticFiles.location("/public");
         Gson gson = new Gson();
         TodoController todoController = new TodoController();
 
         //Redirect for the Todos form
         redirect.get("/todos", "/todos.html");
+
+        //redirect for the About page
+        redirect.get("/about" , "/about.html");
+
+        //Redirect for the home page
+        redirect.get("/index" , "/index.html");
 
         //list of todos
         get("api/todos", (req, res) -> {
@@ -26,15 +32,9 @@ public class TodoServer {
         });
 
         get("api/todos/:id", (req, res) -> {
-        res.type("application/json");
-        String id = req.params("id");
-        return gson.toJson(todoController.getTodo(id));
-        });
-
-        //List users
-        get("api/todos", (req, res) -> {
             res.type("application/json");
-            return wrapInJson("todos", gson.toJsonTree(todoController.listTodos(req.queryMap().toMap())));
+            String id = req.params("id");
+            return gson.toJson(todoController.getTodo(id));
         });
     }
 

@@ -13,18 +13,44 @@ var getAllTodos = function(){
     });
 }
 
-function setURL(){
+
+// var newPage = null;
+
+// function testDawn(selection, urlAddOn){
+//
+//     var newPage = "http://localhost:4567/api/todos" + selection + urlAddOn;
+//
+//     if(selection == 'id') {
+//         newPage = "http://localhost:4567/api/todos" + urlAddOn;
+//     }
+//
+//
+//     return newPage;
+// }
+var newPage = "http://localhost:4567/api/todos"
+
+function filterList() {
     var selection = document.getElementById('options').value;
     var urlAddOn = document.getElementById("redirect").value;
-    var newPage = "http://localhost:4567/api/todos" + selection + urlAddOn;
-
-    if(selection == 'id'){
-        newPage = "http://localhost:4567/api/todos" + urlAddOn;
-    }
-
-    document.location = newPage;
+    var newPage = urlCreator(selection, urlAddOn);
+    presentData(newPage);
 }
 
+function urlCreator(selection, urlAddOn){
+    var newPage = "http://localhost:4567/api/todos?" + selection + "=" + urlAddOn;
+
+    if(selection == 'id') {
+        newPage = "http://localhost:4567/api/todos" + urlAddOn;
+    }
+  return newPage;
+}
+
+function presentData(newPage) {
+    var Ourclient = new HttpClient();
+    Ourclient.get(newPage, function (returned_json) {
+        document.getElementById('jsonDump').innerHTML = returned_json;
+    });
+}
 
 /**
 

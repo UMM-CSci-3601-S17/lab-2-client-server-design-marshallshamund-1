@@ -59,6 +59,9 @@ public class TodoController {
 
     // Returns a Single one
     public Todo getTodo(String id){
+        for(int i = 0; i < todos.length; i++){
+            //if(todos[i].equals())
+        }
         return Arrays.stream(todos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
     }
 

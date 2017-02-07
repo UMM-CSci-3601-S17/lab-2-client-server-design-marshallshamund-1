@@ -59,9 +59,6 @@ public class TodoController {
 
     // Returns a Single one
     public Todo getTodo(String id){
-        for(int i = 0; i < todos.length; i++){
-            //if(todos[i].equals())
-        }
         return Arrays.stream(todos).filter(x -> x._id.equals(id)).findFirst().orElse(null);
     }
 
@@ -87,7 +84,7 @@ public class TodoController {
     }
 
     //returns todos of specified owner
-    //Made it so it will automacially remove whitespaces when placed in URL
+    //Made it so it will automatically remove whitespaces when placed in URL
     public Todo[] findTheirTodos(Todo[] ownerTodos, String whoseTodo){
         return Arrays.stream(ownerTodos).filter(x -> x.owner.replace(" ","").equalsIgnoreCase(whoseTodo.replace(" ",""))).toArray(Todo[]::new);
     }

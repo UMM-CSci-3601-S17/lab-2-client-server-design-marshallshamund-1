@@ -14,19 +14,6 @@ var getAllTodos = function(){
 }
 
 
-// var newPage = null;
-
-// function testDawn(selection, urlAddOn){
-//
-//     var newPage = "http://localhost:4567/api/todos" + selection + urlAddOn;
-//
-//     if(selection == 'id') {
-//         newPage = "http://localhost:4567/api/todos" + urlAddOn;
-//     }
-//
-//
-//     return newPage;
-// }
 var newPage = "http://localhost:4567/api/todos"
 
 function filterList() {
@@ -40,7 +27,7 @@ function urlCreator(selection, urlAddOn){
     var newPage = "http://localhost:4567/api/todos?" + selection + "=" + urlAddOn;
 
     if(selection == 'id') {
-        newPage = "http://localhost:4567/api/todos" + urlAddOn;
+        newPage = "http://localhost:4567/api/todos/" + urlAddOn;
     }
   return newPage;
 }

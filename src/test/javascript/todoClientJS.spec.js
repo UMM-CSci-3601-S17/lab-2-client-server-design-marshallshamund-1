@@ -15,7 +15,10 @@ it('To filter by todos containing the word officia, the URL should be http://loc
    expect(urlCreator("contains", "officia")).toBe("http://localhost:4567/api/todos?contains=officia") ;
 });
 
-it('To filter by owner category homework, the URL should be http://localhost:4567/api/todos?category=homework', function(){
+it('To filter by category homework, the URL should be http://localhost:4567/api/todos?category=homework', function(){
    expect(urlCreator("category", "homework")).toBe("http://localhost:4567/api/todos?category=homework");
 });
 
+it('To filter by id, the URL should be http://localhost:4567/api/todos/5889598570072f3c4c7ccea2', function(){
+    expect(urlCreator("id", "5889598570072f3c4c7ccea2")).toBe("http://localhost:4567/api/todos/5889598570072f3c4c7ccea2");
+});

@@ -40,7 +40,7 @@ function urlCreator(selection, urlAddOn){
     var newPage = "http://localhost:4567/api/todos?" + selection + "=" + urlAddOn;
 
     if(selection == 'id') {
-        newPage = "http://localhost:4567/api/todos" + urlAddOn;
+        newPage = "http://localhost:4567/api/todos/" + urlAddOn;
     }
   return newPage;
 }
